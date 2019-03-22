@@ -156,11 +156,11 @@
         nextPage = response.offset ? fetchEndpoint + '&offset=' + encodeURIComponent(response.offset) : null;
         nextPageLoading = false;
 
-        var isTimeInSeconds = isKong1xVersion(env.kong_version);
+        var isTimestampInSeconds = env.kong_version >= "0.14";
 
         // appending related resources, if any.
         vm.resources.forEach(function(resource) {
-          if (resource.created_at && isTimeInSeconds) {
+          if (isTimestampInSeconds && resource.created_at) {
             resource.created_at *= 1000;
           }
           if (!resource.api && resource.api_id) {
@@ -231,9 +231,5 @@
         });
       });
     };
-
-    function isKong1xVersion(versionStr) {
-      return versionStr >= "1.0.0" || versionStr.substring(0, 4) === "0.15"
-    }
   }
 })();
