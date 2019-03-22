@@ -20,7 +20,6 @@
     switch(resourceType) {
       case 'acl':
         vm.title = 'Add Consumer "' + (parent.username || parent.custom_id) + '" to a Group.';
-        vm.resource.consumer_id = parent.id;
         break;
       case 'API':
         vm.title = resource ? 'Update API' : 'Create API';
@@ -28,7 +27,6 @@
       case 'basic-auth-credential':
         vm.title = resource ? 'Update credential' : 'Create basic auth credential for Consumer "' + (parent.username || parent.custom_id) + '"';
         delete vm.schema.properties.consumer_id;
-        vm.resource.consumer_id = parent.id;
         break;
       case 'certificate':
         vm.title = resource ? 'Update Certificate' : 'Create Certificate';
@@ -38,21 +36,17 @@
         break;
       case 'hmac-credential':
         vm.title = resource ? 'Update credential' : 'Create HMAC credential for Consumer "' + (parent.username || parent.custom_id) + '"';
-        vm.resource.consumer_id = parent.id;
         break;
       case 'jwt-credential':
         vm.title = 'Create a JWT for Consumer "' + (parent.username || parent.custom_id) + '"';
-        vm.resource.consumer_id = parent.id;
         break;
       case 'auth-key':
         vm.title = resource ? 'Update Key' : 'Create a Key for Consumer "' + (parent.username || parent.custom_id) + '"';
         delete vm.schema.properties.consumer_id;
-        vm.resource.consumer_id = parent.id;
         break;
       case 'oauth2-credential':
         vm.title = resource ? 'Update Oauth2 credential' : 'Create an oauth2 credential for Consumer "' + (parent.username || parent.custom_id) + '"';
         delete vm.schema.properties.consumer_id;
-        vm.resource.consumer_id = parent.id;
         break;
       case 'plugin':
         vm.title = resource ? 'Update Plugin' : 'Create Plugin';
